@@ -1,0 +1,64 @@
+{
+  "envConfigList": [
+    {
+      "envId": "ENV001",
+      "envType": "开发环境",
+      "envParams": "JVM堆内存2G，端口8080",
+      "envRemark": "日常开发调试使用"
+    },
+    {
+      "envId": "ENV002",
+      "envType": "测试环境",
+      "envParams": "JVM堆内存4G，端口8081",
+      "envRemark": "功能测试、接口测试专用"
+    },
+    {
+      "envId": "ENV003",
+      "envType": "预发布环境",
+      "envParams": "JVM堆内存8G，端口8082",
+      "envRemark": "模拟生产配置，发布前验证"
+    },
+    {
+      "envId": "ENV004",
+      "envType": "生产环境",
+      "envParams": "JVM堆内存16G，端口80",
+      "envRemark": "线上业务运行环境，禁止随意修改"
+    },
+    {
+      "envId": "ENV005",
+      "envType": "压测环境",
+      "envParams": "JVM堆内存32G，端口8083",
+      "envRemark": "性能压测、高并发测试使用"
+    },
+    {
+      "envId": "ENV006",
+      "envType": "灰度环境",
+      "envParams": "JVM堆内存8G，端口8084",
+      "envRemark": "新版本灰度发布验证"
+    },
+    {
+      "envId": "ENV007",
+      "envType": "本地环境",
+      "envParams": "JVM堆内存1G，端口8888",
+      "envRemark": "开发人员本地调试环境"
+    },
+    {
+      "envId": "ENV008",
+      "envType": "集成测试环境",
+      "envParams": "JVM堆内存4G，端口8085",
+      "envRemark": "多模块集成测试使用"
+    },
+    {
+      "envId": "ENV009",
+      "envType": "灾备环境",
+      "envParams": "JVM堆内存16G，端口8086",
+      "envRemark": "生产环境灾备备份"
+    },
+    {
+      "envId": "ENV010",
+      "envType": "演示环境",
+      "envParams": "JVM堆内存4G，端口8087",
+      "envRemark": "对外演示产品功能使用"
+    }
+  ]
+}
