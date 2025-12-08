@@ -1,0 +1,39 @@
+{
+  "testCase": [
+    {
+      "testCaseId": "TC-001",
+      "testCaseBasic": "用户登录功能验证",
+      "inspectObjectDocumentList": [
+        {
+          "docName": "《系统需求规格说明书》第5.2节"
+        }
+      ],
+      "testCasePreCondition": "系统已部署完成，测试环境网络正常",
+      "testCaseStepAndData": "1. 打开登录页；2. 输入账号：test01，密码：123456；3. 点击登录按钮",
+      "testCaseExpectResult": "成功进入系统首页，显示用户昵称“test01”",
+      "testCasePriority": "高",
+      "testCaseDesignManagerUser": "张三",
+      "testCaseTestManagerUser": "李四",
+      "testCaseDate": "2025-12-08"
+    },
+    {
+      "testCaseId": "TC-002",
+      "testCaseBasic": "商品搜索功能测试",
+      "inspectObjectDocumentList": [
+        {
+          "docName": "《接口设计文档》第3.1节"
+        },
+        {
+          "docName": "《UI交互规范》第2.3节"
+        }
+      ],
+      "testCasePreCondition": "用户已登录系统，商品数据库存在数据",
+      "testCaseStepAndData": "1. 进入商品页面；2. 在搜索框输入“笔记本电脑”；3. 点击搜索按钮",
+      "testCaseExpectResult": "显示至少5条笔记本电脑商品列表，且搜索结果与关键词匹配",
+      "testCasePriority": "中",
+      "testCaseDesignManagerUser": "王五",
+      "testCaseTestManagerUser": "赵六",
+      "testCaseDate": "2025-12-09"
+    }
+  ]
+}

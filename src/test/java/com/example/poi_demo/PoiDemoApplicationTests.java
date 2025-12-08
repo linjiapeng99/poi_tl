@@ -4,6 +4,9 @@ import com.deepoove.poi.XWPFTemplate;
 import com.deepoove.poi.config.Configure;
 import com.deepoove.poi.config.ConfigureBuilder;
 import com.deepoove.poi.data.FilePictureRenderData;
+import com.deepoove.poi.data.PictureRenderData;
+import com.deepoove.poi.data.PictureType;
+import com.deepoove.poi.data.Pictures;
 import com.deepoove.poi.plugin.table.LoopRowTableRenderPolicy;
 import com.deepoove.poi.policy.RenderPolicy;
 import com.deepoove.poi.util.TableTools;
@@ -346,7 +349,63 @@ class PoiDemoApplicationTests {
         template.close();
     }
     @Test
-    void testRenderImage() throws IOException {
-
+    void testRenderLoadXReport() throws IOException {
+        // 1. 准备被渲染的数据
+        Map<String, Object> data = new HashMap<>();
+        // 文档基本信息
+        data.put("loadXPlanName", "LoadX测试报告-11111111");
+        data.put("loadXPlanExcuteDate", "2025年12月8日至2025年12月9日");
+        data.put("loadXPlanExcuteDuration", "24小时");
+        data.put("loadXConcurrentUsers", "12222人");
+        //文档中嵌套的列表
+        List<Map<String,String>>loadXRecordList=new ArrayList<>();
+        Map<String,String>loadXRecordMap1=new HashMap<>();
+        loadXRecordMap1.put("loadRecordId", "1");
+        loadXRecordMap1.put("loadXRecordTransaction", "登录");
+        loadXRecordMap1.put("loadXRecordUserCount", "1000");
+        loadXRecordMap1.put("loadXaverageResponseTime", "1小时");
+        loadXRecordMap1.put("loadXthroughput", "1024B");
+        loadXRecordMap1.put("loadXRecordsuccessRate", "90%");
+        loadXRecordList.add(loadXRecordMap1);
+        Map<String,String>loadXRecordMap2=new HashMap<>();
+        loadXRecordMap2.put("loadRecordId", "2");
+        loadXRecordMap2.put("loadXRecordTransaction", "注册");
+        loadXRecordMap2.put("loadXRecordUserCount", "5000");
+        loadXRecordMap2.put("loadXaverageResponseTime", "11小时");
+        loadXRecordMap2.put("loadXthroughput", "2048B");
+        loadXRecordMap2.put("loadXRecordsuccessRate", "80%");
+        loadXRecordList.add(loadXRecordMap2);
+        Map<String,String>loadXRecordMap3=new HashMap<>();
+        loadXRecordMap3.put("loadRecordId", "3");
+        loadXRecordMap3.put("loadXRecordTransaction", "搜索");
+        loadXRecordMap3.put("loadXRecordUserCount", "2000");
+        loadXRecordMap3.put("loadXaverageResponseTime", "3小时");
+        loadXRecordMap3.put("loadXthroughput", "1024B");
+        loadXRecordMap3.put("loadXRecordsuccessRate", "50%");
+        loadXRecordList.add(loadXRecordMap3);
+        data.put("loadXRecordList", loadXRecordList);
+        // 图片（如果有）
+        FileInputStream fis = new FileInputStream("src/main/resources/image/poi测试图片.png");
+        PictureRenderData picture = Pictures.ofStream(fis, PictureType.PNG)
+                .size(400, 200)
+                .create();
+        data.put("loadXActiveUserCount", picture);
+        data.put("loadXRequestCountPerSecond", picture);
+        data.put("loadXTransactionCountPerSecond", picture);
+        data.put("loadXThroughputPerSecond", picture);
+        data.put("loadXAverageResponseTime", picture);
+        LoopRowTableRenderPolicy policy = new LoopRowTableRenderPolicy();
+        Configure config = Configure.builder()
+                .buildGramer("${", "}")  // 使用 ${} 作为标签前后缀
+                .build();
+        config.customPolicy("loadXRecordList", policy);
+        //准备模板
+        XWPFTemplate template = XWPFTemplate
+                .compile("src/main/resources/templateDoc/LoadX测试报告.docx", config)
+                .render(data);
+        //输出文档
+        template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/LoadX测试报告输出2.docx"));
+        System.out.println("文档生成成功！");
     }
+
 }
