@@ -30,10 +30,6 @@ import java.util.regex.Pattern;
 @SpringBootTest
 class PoiDemoApplicationTests {
 
-    @Test
-    void contextLoads() {
-    }
-
     /**
      * poi测试列表的渲染
      *
@@ -211,6 +207,7 @@ class PoiDemoApplicationTests {
         template.close();
         out.close();
     }
+
     /**
      * poi测试检测用例模板
      */
@@ -337,24 +334,27 @@ class PoiDemoApplicationTests {
         template.close();
         out.close();
     }
+
     @Test
     void testRenderTemplateWithJson1() throws IOException {
         //1. 读取json数据
         ObjectMapper mapper = new ObjectMapper();
-        Map<String, Object> envConfigList=mapper.readValue(
+        Map<String, Object> envConfigList = mapper.readValue(
                 new File("src/main/resources/json/envConfig.json"),
-                new TypeReference<Map<String, Object>>() {}
+                new TypeReference<Map<String, Object>>() {
+                }
         );
         ConfigureBuilder builder = Configure.builder();
         builder.buildGramer("${", "}");
         LoopRowTableRenderPolicy policy = new LoopRowTableRenderPolicy();
         Configure configure = builder.build();
         configure.customPolicy("envConfigList", policy);
-        String path="src/main/resources/templateDoc/02检测用例 - 占位符.docx";
-        XWPFTemplate template=XWPFTemplate.compile(path, configure).render(envConfigList);
+        String path = "src/main/resources/templateDoc/02检测用例 - 占位符.docx";
+        XWPFTemplate template = XWPFTemplate.compile(path, configure).render(envConfigList);
         template.write(new FileOutputStream("src/main/resources/outputDoc/输出检测用例1.docx"));
         template.close();
     }
+
     @Test
     void testRenderLoadXReport() throws IOException {
         // 1. 准备被渲染的数据
@@ -365,8 +365,8 @@ class PoiDemoApplicationTests {
         data.put("loadXPlanExcuteDuration", "24小时");
         data.put("loadXConcurrentUsers", "12222人");
         //文档中嵌套的列表
-        List<Map<String,String>>loadXRecordList=new ArrayList<>();
-        Map<String,String>loadXRecordMap1=new HashMap<>();
+        List<Map<String, String>> loadXRecordList = new ArrayList<>();
+        Map<String, String> loadXRecordMap1 = new HashMap<>();
         loadXRecordMap1.put("loadRecordId", "1");
         loadXRecordMap1.put("loadXRecordTransaction", "登录");
         loadXRecordMap1.put("loadXRecordUserCount", "1000");
@@ -374,7 +374,7 @@ class PoiDemoApplicationTests {
         loadXRecordMap1.put("loadXthroughput", "1024B");
         loadXRecordMap1.put("loadXRecordsuccessRate", "90%");
         loadXRecordList.add(loadXRecordMap1);
-        Map<String,String>loadXRecordMap2=new HashMap<>();
+        Map<String, String> loadXRecordMap2 = new HashMap<>();
         loadXRecordMap2.put("loadRecordId", "2");
         loadXRecordMap2.put("loadXRecordTransaction", "注册");
         loadXRecordMap2.put("loadXRecordUserCount", "5000");
@@ -382,7 +382,7 @@ class PoiDemoApplicationTests {
         loadXRecordMap2.put("loadXthroughput", "2048B");
         loadXRecordMap2.put("loadXRecordsuccessRate", "80%");
         loadXRecordList.add(loadXRecordMap2);
-        Map<String,String>loadXRecordMap3=new HashMap<>();
+        Map<String, String> loadXRecordMap3 = new HashMap<>();
         loadXRecordMap3.put("loadRecordId", "3");
         loadXRecordMap3.put("loadXRecordTransaction", "搜索");
         loadXRecordMap3.put("loadXRecordUserCount", "2000");
@@ -414,6 +414,7 @@ class PoiDemoApplicationTests {
         template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/LoadX测试报告输出2.docx"));
         System.out.println("文档生成成功！");
     }
+
     @Test
     void testRenderCodeXReport() throws IOException {
         // 1. 准备被渲染的数据
@@ -426,8 +427,8 @@ class PoiDemoApplicationTests {
         data.put("codeXScanCodeCount", "22222");
         data.put("codeXConcurrentUsers", "33333");
         //文档中嵌套的列表
-        List<Map<String,String>>codeXRecordList=new ArrayList<>();
-        Map<String,String>codeXRecordMap1=new HashMap<>();
+        List<Map<String, String>> codeXRecordList = new ArrayList<>();
+        Map<String, String> codeXRecordMap1 = new HashMap<>();
         codeXRecordMap1.put("codeXDefectType", "可移植性缺陷");
         codeXRecordMap1.put("codeXDefectSevere", "12");
         codeXRecordMap1.put("codeXDefecthigh", "1000");
@@ -435,7 +436,7 @@ class PoiDemoApplicationTests {
         codeXRecordMap1.put("codeXDefectLow", "2");
         codeXRecordMap1.put("codeXDefectAll", "1017");
         codeXRecordList.add(codeXRecordMap1);
-        Map<String,String>codeXRecordMap2=new HashMap<>();
+        Map<String, String> codeXRecordMap2 = new HashMap<>();
         codeXRecordMap2.put("codeXDefectType", "不可移植性缺陷");
         codeXRecordMap2.put("codeXDefectSevere", "14");
         codeXRecordMap2.put("codeXDefecthigh", "2000");
@@ -443,7 +444,7 @@ class PoiDemoApplicationTests {
         codeXRecordMap2.put("codeXDefectLow", "12");
         codeXRecordMap2.put("codeXDefectAll", "2059");
         codeXRecordList.add(codeXRecordMap2);
-        Map<String,String>codeXRecordMap3=new HashMap<>();
+        Map<String, String> codeXRecordMap3 = new HashMap<>();
         codeXRecordMap3.put("codeXDefectType", "未知缺陷");
         codeXRecordMap3.put("codeXDefectSevere", "14");
         codeXRecordMap3.put("codeXDefecthigh", "15");
@@ -471,6 +472,7 @@ class PoiDemoApplicationTests {
         template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/CodeX测试报告输出1.docx"));
         System.out.println("文档生成成功！");
     }
+
     @Test
     void testRenderFossXReport() throws IOException {
         // 1. 准备被渲染的数据
@@ -485,17 +487,17 @@ class PoiDemoApplicationTests {
         data.put("fossXVulnerabilityMedium", "333");
         data.put("fossXVulnerabilityLow", "444");
         data.put("fossXVulnerabilityUnknow", "555");
-        data.put("fossXVulnerabilityAll", String.valueOf(111+222+333+444+555));
+        data.put("fossXVulnerabilityAll", String.valueOf(111 + 222 + 333 + 444 + 555));
         data.put("fossXLicenseCritical", "111");
         data.put("fossXLicenseHigh", "222");
         data.put("fossXLicenseMedium", "333");
         data.put("fossXLicenseLow", "444");
         data.put("fossXLicenseUnknow", "555");
-        data.put("fossXLicenseAll", String.valueOf(111+222+333+444+555));
-        data.put("fossXComplianceRiskHigh","111");
-        data.put("fossXComplianceRiskMedium","111");
-        data.put("fossXComplianceRiskLow","111");
-        data.put("fossXComplianceRiskAll","333");
+        data.put("fossXLicenseAll", String.valueOf(111 + 222 + 333 + 444 + 555));
+        data.put("fossXComplianceRiskHigh", "111");
+        data.put("fossXComplianceRiskMedium", "111");
+        data.put("fossXComplianceRiskLow", "111");
+        data.put("fossXComplianceRiskAll", "333");
         // 图片（如果有）
         FileInputStream fossxComponentimage = new FileInputStream("src/main/resources/image/fossxComponentimage.png");
         FileInputStream fossxvulnerabilityimage = new FileInputStream("src/main/resources/image/fossxvulnerabilityimage.png");
@@ -523,6 +525,7 @@ class PoiDemoApplicationTests {
         template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/FossX测试报告输出1.docx"));
         System.out.println("文档生成成功！");
     }
+
     //使用原生poi测试excle
     @Test
     void testRenderExcelTemplate() throws IOException {
@@ -606,4 +609,129 @@ class PoiDemoApplicationTests {
 
         System.out.println("Excel文档生成成功！");
     }
+
+    //测试完整版的检测报告
+    @Test
+    void testRenderTestReportWithJson() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, Object> data = mapper.readValue(
+                new File("src/main/resources/json/testreportdata.json"),
+                new TypeReference<Map<String, Object>>() {
+                }
+        );
+        ConfigureBuilder builder = Configure.builder();
+        builder.buildGramer("${", "}");
+        LoopRowTableRenderPolicy policy = new LoopRowTableRenderPolicy();
+        LoopRowTableRenderPolicy policy1 = new LoopRowTableRenderPolicy() {
+            @Override
+            protected void afterloop(XWPFTable table, Object data) {
+                // 先调用父类方法完成数据渲染
+                super.afterloop(table, data);
+
+                // 根据ID合并单元格
+                mergeCellsById(table);
+            }
+
+            /**
+             * 核心合并方法：根据ID列的值合并相同ID的行
+             * 表格结构：
+             * - 行0: 主表头
+             * - 行1: 子表头
+             * - 行2+: 数据行
+             * 列结构：
+             * - 列0: ID（序号）
+             * - 列1: 硬件名称
+             * - 列2: 硬件配置
+             * - 列3-5: 软件信息（不合并）
+             */
+            private void mergeCellsById(XWPFTable table) {
+                // 数据行起始位置（跳过2行表头）
+                final int DATA_START_ROW = 2;
+                int totalRows = table.getNumberOfRows();
+
+                // 没有足够数据行时直接返回
+                if (totalRows <= DATA_START_ROW) return;
+
+                // 从第一个数据行开始扫描
+                int currentRow = DATA_START_ROW;
+
+                while (currentRow < totalRows) {
+                    // 获取当前行的ID值
+                    String currentId = getCellText(table, currentRow, 0);
+                    if (currentId.isEmpty()) {
+                        currentRow++;
+                        continue;
+                    }
+
+                    // 查找相同ID的结束行
+                    int endRow = currentRow;
+                    for (int nextRow = currentRow + 1; nextRow < totalRows; nextRow++) {
+                        String nextId = getCellText(table, nextRow, 0);
+                        if (currentId.equals(nextId)) {
+                            endRow = nextRow;
+                        } else {
+                            break;
+                        }
+                    }
+
+                    // 如果有多行相同ID，合并这三列
+                    if (endRow > currentRow) {
+                        // 合并ID列（列0）
+                        TableTools.mergeCellsVertically(table, 0, currentRow, endRow);
+                        // 合并硬件名称列（列1）
+                        TableTools.mergeCellsVertically(table, 1, currentRow, endRow);
+                        // 合并硬件配置列（列2）
+                        TableTools.mergeCellsVertically(table, 2, currentRow, endRow);
+
+                        // 跳转到下一组数据的开始
+                        currentRow = endRow + 1;
+                    } else {
+                        // 单行数据，跳到下一行
+                        currentRow++;
+                    }
+                }
+            }
+
+            /**
+             * 安全获取单元格文本
+             */
+            private String getCellText(XWPFTable table, int row, int col) {
+                try {
+                    XWPFTableCell cell = table.getRow(row).getCell(col);
+                    return cell.getText() != null ? cell.getText().trim() : "";
+                } catch (Exception e) {
+                    return "";
+                }
+            }
+        };
+        Configure configure = builder.build();
+        configure.customPolicy("reportRevisionList",policy);
+        configure.customPolicy("sampleList",policy);
+        configure.customPolicy("documentList",policy);
+        configure.customPolicy("netList",policy);
+        configure.customPolicy("envConfigList",policy);
+        configure.customPolicy("inspectToolList",policy);
+        configure.customPolicy("testResultList",policy);
+        configure.customPolicy("userDocument",policy);
+        configure.customPolicy("userManual",policy);
+        configure.customPolicy("servEnvList",policy1);
+        configure.customPolicy("cliEnvList",policy1);
+        configure.customPolicy("userDocumentSetApproved",new FlatTestItemTablePolicy());
+        configure.customPolicy("functionality",new FlatTestItemTablePolicy());
+        configure.customPolicy("compatibility",new FlatTestItemTablePolicy());
+        configure.customPolicy("highUsability",new FlatTestItemTablePolicy());
+        configure.customPolicy("reliability",new FlatTestItemTablePolicy());
+        configure.customPolicy("informationSecurity",new FlatTestItemTablePolicy());
+        configure.customPolicy("maintainability",new FlatTestItemTablePolicy());
+        configure.customPolicy("portability",new FlatTestItemTablePolicy());
+        configure.customPolicy("performanceEfficiency",new FlatTestItemTablePolicy());
+        configure.customPolicy("issueContentList",policy);
+        configure.customPolicy("loadXRecordList",policy);
+        configure.customPolicy("codeXDefectList",policy);
+        String path = "src/main/resources/templateDoc/完整版检测报告 - 占位符.docx";
+        XWPFTemplate template = XWPFTemplate.compile(path, configure).render(data);
+        template.write(new FileOutputStream("src/main/resources/outputDoc/完整版检测报告1.docx"));
+        template.close();
+    }
+
 }

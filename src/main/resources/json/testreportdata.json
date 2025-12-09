@@ -1,0 +1,372 @@
+{
+  "reportNumber": "LAB20251209",
+  "reportVersion": "V1.0",
+  "reportTotalPage": "28",
+  "sampleName": "智能风控平台",
+  "sampleVersion": "V2.3.1",
+  "testType": "软件产品验收测试",
+  "clientName": "广东数智科技有限公司",
+  "reportDate": "2025年12月09日",
+  "clientAddress": "广东省广州市天河区科韵路123号",
+  "clientContactPerson": "林嘉鹏",
+  "clientContactPhone": "13800138000",
+  "testDate": "2025年12月01日至2025年12月08日",
+  "manufacturer": "广东南北科技有限公司",
+  "testAddress": "深圳市南山区高新科技园A座101实验室",
+  "testBaisc": "GB/T 25000.51-2016、GB/T 25000.10-2016",
+  "relateDocuments": "《需求规格说明书_V2.3》《系统设计文档_V2.3》",
+  "projectOverview": "本项目为智能风控平台，支持实时交易监控、风险评分、规则引擎等功能，采用微服务架构，部署于Kubernetes集群。",
+  "testContentNameList": "功能性、性能效率、信息安全性等9个质量特性",
+  "testContentMethod": "1、用户文档集：主要通过阅读、比较、核实等方法检验文档完整性、正确性、一致性、易理解性等情况。\n2、功能性：覆盖相关文档的功能需求，采用因果图法、等价类划分法、边界值分析法、错误推测法、正交试验法等黑盒测试方法进行手工检测。\n3、兼容性：结合功能测试和相关文档，从共存性、互操作性进行检测。\n4、易用性：结合功能测试和相关文档，从可辨识性、易学性、易操作性、用户差错防御性、用户界面舒适性、易访问性进行检测。\n5、可靠性：结合功能测试和相关文档，从成熟性、可用性、容错性、易恢复性进行检测。\n6、信息安全性：结合功能测试和相关文档，从保密性、完整性、抗抵赖性、可核查性、真实性进行检测。\n7、维护性：结合功能测试和相关文档，从模块化、可重用性、易分析性、易修改性、易测试性进行检测。\n8、可移植性：结合功能测试和相关文档，从适应性、易安装性、易替换性进行检测。\n性能效率：结合功能测试和相关文档，从时间特性、资源利用性、容量进行检测。",
+  "testConclusion": "1、用户文档集：用户文档信息描述正确，与软件功能一致，对系统的操作附加相应的图片说明，可为用户使用软件提供指引。\n2、功能性：被测模块功能运行稳定正常，主要的业务处理功能符合相关文档的要求。\n3、兼容性：用户文档包含系统安装所需要的组件和运行环境要求。\n4、易用性：有关软件执行的问题、消息和结果是可理解的，对具有严重后果的功能执行是可撤销的。\n5、可靠性：对系统运行中可能出现的异常情况有相应的措施，对重要数据的输入和删除系统有数据校验，测试过程中未出现异常退出的情况。\n6、信息安全性：系统能防止用户非法登录；未授权的人员不能阅读和修改相应权限的信息和数据，授权人员可按权限要求进行正确访问。\n7、维护性：本次测试的维护性指标符合相关文档的要求。\n8、可移植性：根据用户文档的说明，软件从一种环境移植到另一种环境中还能正常工作。\n9、性能效率：本次测试的性能效率指标符合相关文档的要求。",
+  "testConclusionPassed": "通过",
+  "testConclusionDate": "2025年12月09日",
+  "inspectUser": "张工",
+  "inspectDate": "2025年12月08日",
+  "auditUser": "李工",
+  "auditDate": "2025年12月09日",
+  "approveUser": "王主任",
+  "approveDate": "2025年12月09日",
+
+  "reportRevisionList": [
+    {
+      "revisionVersion": "V1.0",
+      "revisionContent": "初稿",
+      "testManagerUser": "赵经理",
+      "revisionDate": "2025-12-09",
+      "revisionRemark": "无"
+    }
+  ],
+
+  "sampleList": [
+    {
+      "sampleId": "1",
+      "sampleName": "智能风控平台",
+      "sampleVersion": "V2.3.1",
+      "sampleStorageFormat": "U盘",
+      "sampleCount": "1"
+    }
+  ],
+
+  "documentList": [
+    {
+      "docId": "1",
+      "docName": "用户手册",
+      "docVersion": "V2.3",
+      "docStorageFormat": "电子版",
+      "docCount": "1"
+    },
+    {
+      "docId": "2",
+      "docName": "安装部署指南",
+      "docVersion": "V2.3",
+      "docStorageFormat": "电子版",
+      "docCount": "1"
+    }
+  ],
+
+  "servEnvList": [
+    {
+      "envId": "1",
+      "hwName": "Dell PowerEdge R750",
+      "hwConfig": "64核CPU / 256GB RAM / 2TB SSD",
+      "swName": "CentOS",
+      "swVersion": "7.9",
+      "swSource": "开源",
+      "swPurpose": "操作系统"
+    },
+    {
+      "envId": "1",
+      "hwName": "Dell PowerEdge R750",
+      "hwConfig": "64核CPU / 256GB RAM / 2TB SSD",
+      "swName": "MySQL",
+      "swVersion": "8.0",
+      "swSource": "Oracle",
+      "swPurpose": "数据库"
+    }
+  ],
+
+  "cliEnvList": [
+    {
+      "envId": "1",
+      "hwName": "ThinkPad X1 Carbon",
+      "hwConfig": "Intel i7 / 16GB RAM / 512GB SSD",
+      "swName": "Windows 11",
+      "swVersion": "专业版",
+      "swSource": "Microsoft",
+      "swPurpose": "客户端操作系统"
+    },
+    {
+      "envId": "1",
+      "hwName": "ThinkPad X1 Carbon",
+      "hwConfig": "Intel i7 / 16GB RAM / 512GB SSD",
+      "swName": "Chrome",
+      "swVersion": "120.0",
+      "swSource": "Google",
+      "swPurpose": "浏览器"
+    }
+  ],
+
+  "netList": [
+    {
+      "netConfigId": "1",
+      "netConfigType": "局域网",
+      "netConfigBandwidth": "1Gbps",
+      "netConfigRemark": "内网测试环境"
+    }
+  ],
+
+  "envConfigList": [
+    {
+      "envId": "1",
+      "envType": "实验室环境",
+      "envParams": "温度：23℃，湿度：50%",
+      "envRemark": "符合ISO标准"
+    }
+  ],
+
+  "inspectToolList": [
+    {
+      "inspectToolId": "1",
+      "inspectToolName": "JMeter",
+      "inspectToolVersion": "5.6",
+      "inspectToolSource": "Apache",
+      "inspectToolPurpose": "性能测试"
+    },
+    {
+      "inspectToolId": "2",
+      "inspectToolName": "Burp Suite",
+      "inspectToolVersion": "2023.10",
+      "inspectToolSource": "PortSwigger",
+      "inspectToolPurpose": "安全测试"
+    }
+  ],
+
+  "networkTopologyDiagram": "src/main/resources/image/网络扩扑图.png",
+
+  "testResultList": [
+    {
+      "testResultId": "1",
+      "testResultContent": "用户文档集",
+      "testResult": "通过"
+    },
+    {
+      "testResultId": "2",
+      "testResultContent": "功能性",
+      "testResult": "通过"
+    }
+  ],
+
+  "userDocument": [
+    {
+      "userDocumentId": "1",
+      "userDocName": "用户手册_V2.3.pdf",
+      "isProvide": "是",
+      "isApprove": "通过"
+    }
+  ],
+
+  "userManual": [
+    {
+      "userManualId": "1",
+      "userManualName": "用户手册_V2.3.pdf"
+    }
+  ],
+  "userDocumentSetApproved": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "functionality": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "compatibility": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "highUsability": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "reliability": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "informationSecurity": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "maintainability": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "portability": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+  "performanceEfficiency": [
+    {"seq":"1","testItem": "浏览器兼容", "description": "11111111111", "passed": "通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "22222222222", "passed": "不通过" } ,
+    {"seq":"1","testItem": "浏览器兼容", "description": "33333333333", "passed": "通过" },
+    {"seq":"2","testItem": "CodeX兼容", "description": "44444444444", "passed": "通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "55555555555", "passed": "不通过" } ,
+    {"seq":"2","testItem": "CodeX兼容", "description": "66666666666", "passed": "通过" }
+  ],
+
+  "testIssueSummary": "根据检测依据和相关文档的要求，本次从用户文档集、功能性、兼容性、易用性、可靠性、信息安全性、维护性、可移植性和性能效率进行验收测试，首轮检测共发现22个缺陷，其中功能缺陷7个，易用性缺陷1个，回归检测时8个软件缺陷已修复。",
+
+  "issueContentList": [
+    {
+      "testContentName": "功能性",
+      "levelOne": "0",
+      "levelTwo": "0",
+      "levelThree": "0",
+      "levleFour": "2",
+      "levelFive": "1",
+      "issueAll": "3",
+      "issuePercent": "100%"
+    },
+    {
+      "testContentName": "兼容性",
+      "levelOne": "0",
+      "levelTwo": "0",
+      "levelThree": "0",
+      "levleFour": "2",
+      "levelFive": "1",
+      "issueAll": "3",
+      "issuePercent": "100%"
+    },
+    {
+      "testContentName": "用户文档集",
+      "levelOne": "0",
+      "levelTwo": "0",
+      "levelThree": "0",
+      "levleFour": "2",
+      "levelFive": "1",
+      "issueAll": "3",
+      "issuePercent": "100%"
+    }
+  ],
+  "levelOneIssueAll": "0",
+  "levelTwoIssueAll": "0",
+  "levelThreeIssueAll": "0",
+  "levelFourIssueAll": "2",
+  "levelFiveIssueAll": "1",
+  "allIssue": "3",
+  "levelOneIssuePercent": "0%",
+  "levelTwoIssuePercent": "0%",
+  "levelThreeIssuePercent": "0%",
+  "levelFourIssuePercent": "66.7%",
+  "levelFiveIssuePercent": "33.3%",
+
+  "loadXPlanName": "LoadX_风控平台压力测试",
+  "loadXPlanExcuteDate": "2025-12-05 09:00:00",
+  "loadXPlanExcuteDuration": "2小时",
+  "loadXConcurrentUsers": "5000",
+
+  "loadXRecordList": [
+    {
+      "loadRecordId": "1",
+      "loadXRecordTransaction": "用户登录",
+      "loadXRecordUserCount": "1000",
+      "loadXaverageResponseTime": "850",
+      "loadXthroughput": "120000",
+      "loadXRecordsuccessRate": "99.5"
+    },
+    {
+      "loadRecordId": "2",
+      "loadXRecordTransaction": "风险查询",
+      "loadXRecordUserCount": "3000",
+      "loadXaverageResponseTime": "1200",
+      "loadXthroughput": "80000",
+      "loadXRecordsuccessRate": "98.7"
+    }
+  ],
+
+  "loadXActiveUserCount": "src/main/resources/image/loadx运行用户数.png",
+  "loadXRequestCountPerSecond": "src/main/resources/image/loadx每秒请求数.png",
+  "loadXTransactionCountPerSecond": "src/main/resources/image/loadx每秒事务数.png",
+  "loadXThroughputPerSecond": "src/main/resources/image/loadx吞吐量.png",
+  "loadXAverageResponseTime": "src/main/resources/image/loadx平均响应时间.png",
+
+  "codeXPlanName": "CodeX_代码扫描",
+  "codeXPlanExcuteDate": "2025-12-03",
+  "codeXScanFile": "src/**/*.java",
+  "codeXScanFileCount": "215",
+  "codeXScanCodeCount": "85600",
+  "codeXConcurrentUsers": "N/A",
+
+  "codeXDefectList": [
+    {
+      "codeXDefectType": "空指针",
+      "codeXDefectSevere": "0",
+      "codeXDefecthigh": "2",
+      "codeXDefectMedium": "5",
+      "codeXDefectLow": "10",
+      "codeXDefectAll": "17"
+    }
+  ],
+
+  "codeXRiskImage": "src/main/resources/image/codex分险分布图.png",
+
+  "fossXPlanName": "FossX_开源合规分析",
+  "fossXProjectVersion": "V2.3.1",
+  "fossXComponentCount": "42",
+  "fossXhasLicenseCompatibilityRisk": "否",
+  "fossXAnalyseDate": "2025-12-04",
+
+  "fossXVulnerabilityCritical": "0",
+  "fossXVulnerabilityHigh": "1",
+  "fossXVulnerabilityMedium": "3",
+  "fossXVulnerabilityLow": "5",
+  "fossXVulnerabilityUnknow": "0",
+  "fossXVulnerabilityAll": "9",
+
+  "fossXLicenseCritical": "0",
+  "fossXLicenseHigh": "0",
+  "fossXLicenseMedium": "2",
+  "fossXLicenseLow": "8",
+  "fossXLicenseUnknow": "0",
+  "fossXLicenseAll": "10",
+
+  "fossXComplianceRiskHigh": "0",
+  "fossXComplianceRiskMedium": "1",
+  "fossXComplianceRiskLow": "3",
+  "fossXComplianceRiskAll": "4",
+
+  "fossXComponentImage": "src/main/resources/image/fossxComponentimage.png",
+  "fossXVulnerabilityImage": "src/main/resources/image/fossxvulnerabilityimage.png",
+  "fossXLicenseImage": "src/main/resources/image/fossxlicenseimage.png"
+}
