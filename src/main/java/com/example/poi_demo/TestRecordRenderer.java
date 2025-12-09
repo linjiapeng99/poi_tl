@@ -18,7 +18,6 @@ public class TestRecordRenderer {
     public static void main(String[] args) throws Exception {
         // 1. 准备数据
         Map<String, Object> data = new HashMap<>();
-        
         // 文档基本信息
         data.put("recordNo", "Lab-20251201003-DCR");
         data.put("version", "V1.0");

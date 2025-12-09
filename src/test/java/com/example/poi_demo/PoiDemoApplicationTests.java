@@ -12,6 +12,11 @@ import com.deepoove.poi.policy.RenderPolicy;
 import com.deepoove.poi.util.TableTools;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xwpf.usermodel.XWPFTable;
 import org.apache.poi.xwpf.usermodel.XWPFTableCell;
 import org.junit.jupiter.api.Test;
@@ -19,6 +24,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @SpringBootTest
 class PoiDemoApplicationTests {
@@ -407,5 +414,196 @@ class PoiDemoApplicationTests {
         template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/LoadX测试报告输出2.docx"));
         System.out.println("文档生成成功！");
     }
+    @Test
+    void testRenderCodeXReport() throws IOException {
+        // 1. 准备被渲染的数据
+        Map<String, Object> data = new HashMap<>();
+        // 文档基本信息
+        data.put("codeXPlanName", "CodeX测试报告-11111111");
+        data.put("codeXPlanExcuteDate", "2025年12月8日至2025年12月9日");
+        data.put("codeXScanFile", "代码扫描平台.zip");
+        data.put("codeXScanFileCount", "222");
+        data.put("codeXScanCodeCount", "22222");
+        data.put("codeXConcurrentUsers", "33333");
+        //文档中嵌套的列表
+        List<Map<String,String>>codeXRecordList=new ArrayList<>();
+        Map<String,String>codeXRecordMap1=new HashMap<>();
+        codeXRecordMap1.put("codeXDefectType", "可移植性缺陷");
+        codeXRecordMap1.put("codeXDefectSevere", "12");
+        codeXRecordMap1.put("codeXDefecthigh", "1000");
+        codeXRecordMap1.put("codeXDefectMedium", "3");
+        codeXRecordMap1.put("codeXDefectLow", "2");
+        codeXRecordMap1.put("codeXDefectAll", "1017");
+        codeXRecordList.add(codeXRecordMap1);
+        Map<String,String>codeXRecordMap2=new HashMap<>();
+        codeXRecordMap2.put("codeXDefectType", "不可移植性缺陷");
+        codeXRecordMap2.put("codeXDefectSevere", "14");
+        codeXRecordMap2.put("codeXDefecthigh", "2000");
+        codeXRecordMap2.put("codeXDefectMedium", "33");
+        codeXRecordMap2.put("codeXDefectLow", "12");
+        codeXRecordMap2.put("codeXDefectAll", "2059");
+        codeXRecordList.add(codeXRecordMap2);
+        Map<String,String>codeXRecordMap3=new HashMap<>();
+        codeXRecordMap3.put("codeXDefectType", "未知缺陷");
+        codeXRecordMap3.put("codeXDefectSevere", "14");
+        codeXRecordMap3.put("codeXDefecthigh", "15");
+        codeXRecordMap3.put("codeXDefectMedium", "16");
+        codeXRecordMap3.put("codeXDefectLow", "55");
+        codeXRecordMap3.put("codeXDefectAll", "100");
+        codeXRecordList.add(codeXRecordMap3);
+        data.put("codeXDefectList", codeXRecordList);
+        // 图片（如果有）
+        FileInputStream fis = new FileInputStream("src/main/resources/image/poi测试图片.png");
+        PictureRenderData picture = Pictures.ofStream(fis, PictureType.PNG)
+                .size(400, 200)
+                .create();
+        data.put("codeXRiskImage", picture);
+        LoopRowTableRenderPolicy policy = new LoopRowTableRenderPolicy();
+        Configure config = Configure.builder()
+                .buildGramer("${", "}")  // 使用 ${} 作为标签前后缀
+                .build();
+        config.customPolicy("codeXDefectList", policy);
+        //准备模板
+        XWPFTemplate template = XWPFTemplate
+                .compile("src/main/resources/templateDoc/附录B CodeX平台检测记录.docx", config)
+                .render(data);
+        //输出文档
+        template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/CodeX测试报告输出1.docx"));
+        System.out.println("文档生成成功！");
+    }
+    @Test
+    void testRenderFossXReport() throws IOException {
+        // 1. 准备被渲染的数据
+        Map<String, Object> data = new HashMap<>();
+        // 文档基本信息
+        data.put("fossXProjectVersion", "FossX测试报告-11111111");
+        data.put("fossXComponentCount", "1111");
+        data.put("fossXhasLicenseCompatibilityRisk", "不存在");
+        data.put("fossXAnalyseDate", new Date());
+        data.put("fossXVulnerabilityCritical", "111");
+        data.put("fossXVulnerabilityHigh", "222");
+        data.put("fossXVulnerabilityMedium", "333");
+        data.put("fossXVulnerabilityLow", "444");
+        data.put("fossXVulnerabilityUnknow", "555");
+        data.put("fossXVulnerabilityAll", String.valueOf(111+222+333+444+555));
+        data.put("fossXLicenseCritical", "111");
+        data.put("fossXLicenseHigh", "222");
+        data.put("fossXLicenseMedium", "333");
+        data.put("fossXLicenseLow", "444");
+        data.put("fossXLicenseUnknow", "555");
+        data.put("fossXLicenseAll", String.valueOf(111+222+333+444+555));
+        data.put("fossXComplianceRiskHigh","111");
+        data.put("fossXComplianceRiskMedium","111");
+        data.put("fossXComplianceRiskLow","111");
+        data.put("fossXComplianceRiskAll","333");
+        // 图片（如果有）
+        FileInputStream fossxComponentimage = new FileInputStream("src/main/resources/image/fossxComponentimage.png");
+        FileInputStream fossxvulnerabilityimage = new FileInputStream("src/main/resources/image/fossxvulnerabilityimage.png");
+        FileInputStream fossxlicenseimage = new FileInputStream("src/main/resources/image/fossxlicenseimage.png");
+        PictureRenderData picture1 = Pictures.ofStream(fossxComponentimage, PictureType.PNG)
+                .size(400, 200)
+                .create();
+        PictureRenderData picture2 = Pictures.ofStream(fossxvulnerabilityimage, PictureType.PNG)
+                .size(400, 200)
+                .create();
+        PictureRenderData picture3 = Pictures.ofStream(fossxlicenseimage, PictureType.PNG)
+                .size(400, 200)
+                .create();
+        data.put("fossXComponentImage", picture1);
+        data.put("fossXVulnerabilityImage", picture2);
+        data.put("fossXLicenseImage", picture3);
+        Configure config = Configure.builder()
+                .buildGramer("${", "}")  // 使用 ${} 作为标签前后缀
+                .build();
+        //准备模板
+        XWPFTemplate template = XWPFTemplate
+                .compile("src/main/resources/templateDoc/FossX平台报告测试.docx", config)
+                .render(data);
+        //输出文档
+        template.writeAndClose(new FileOutputStream("src/main/resources/outputDoc/FossX测试报告输出1.docx"));
+        System.out.println("文档生成成功！");
+    }
+    //使用原生poi测试excle
+    @Test
+    void testRenderExcelTemplate() throws IOException {
+        // 1. 准备数据
+        Map<String, String> data = new HashMap<>();
+        data.put("clientName", "南北科技有限公司");
+        data.put("clientNo", "CT2025001");
+        data.put("clientAddress", "广州大都会广场");
+        data.put("clientContactPerson", "张三");
+        data.put("clientContactPhone", "13800138000");
+        data.put("sampleName", "智能客服系统");
+        data.put("sampleVersion", "V1.0");
+        data.put("runPlatform", "Windows/Linux");
+        data.put("devLanguage", "Java");
+        data.put("softwareType", "Web应用");
+        data.put("softwareArchitecture", "微服务架构");
+        data.put("devUnit", "研发部");
+        data.put("deliveryMethod", "邮寄");
+        data.put("mailingAddress", "广州市天河区");
+        data.put("costTax", "10000元");
+        data.put("costNotTax", "9000元");
+        data.put("remark", "无特殊要求");
+        data.put("clientAutAgent", "李四");
+        data.put("clientDate", "2025年12月1日");
+        data.put("trusAuditUser", "王五");
+        data.put("trusAuditDate", "2025年12月2日");
+        data.put("trusProcessor", "赵六");
+        data.put("trusProcessDate", "2025年12月3日");
 
+        // 2. 加载模板
+        FileInputStream fis = new FileInputStream("src/main/resources/templateDoc/07检测委托申请单 - 占位符.xlsx");
+        XSSFWorkbook workbook = new XSSFWorkbook(fis);
+
+        // 3. 获取第一个工作表（假设只有一个Sheet）
+        XSSFSheet sheet = workbook.getSheetAt(0);
+
+        // 4. 遍历所有行和列，替换占位符
+        Pattern pattern = Pattern.compile("\\$\\{([^}]+)\\}"); // 匹配 ${key}
+
+        for (Row row : sheet) {
+            for (Cell cell : row) {
+                if (cell.getCellType() == CellType.STRING) {
+                    String value = cell.getStringCellValue();
+                    if (value.contains("${")) {
+                        Matcher matcher = pattern.matcher(value);
+                        StringBuffer sb = new StringBuffer();
+
+                        boolean hasMatch = false;
+                        while (matcher.find()) {
+                            String key = matcher.group(1); // 提取 key，如 "clientName"
+                            String replacement = data.get(key);
+                            if (replacement != null) {
+                                // 转义 $ 和 \，避免在 replaceAll 中出错
+                                replacement = Matcher.quoteReplacement(replacement);
+                                matcher.appendReplacement(sb, replacement);
+                                hasMatch = true;
+                            } else {
+                                // 如果 key 不存在，保留原占位符（或可设为空）
+                                matcher.appendReplacement(sb, matcher.group(0));
+                            }
+                        }
+                        if (hasMatch) {
+                            matcher.appendTail(sb);
+                            cell.setCellValue(sb.toString());
+                        }
+                    }
+                }
+            }
+        }
+
+        // 5. 输出到新文件
+        File outputDir = new File("src/main/resources/templateDoc/07检测委托申请单 - 占位符.xlsx");
+        if (!outputDir.exists()) {
+            outputDir.mkdirs();
+        }
+
+        FileOutputStream out = new FileOutputStream("src/main/resources/outputDoc/检测委托申请单 - 占位符.xlsx");
+        workbook.write(out);
+        workbook.close();
+        out.close();
+
+        System.out.println("Excel文档生成成功！");
+    }
 }
